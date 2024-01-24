@@ -61,7 +61,6 @@ private:
 
 public:
     std::vector<std::vector<float>> data = {};
-    // std::optional<float> determinant = std::nullopt;
     float determinant;
 
     // Constructor
@@ -154,6 +153,18 @@ public:
         return reduced;
     }
 
+    Matrix transpose() {
+        std::vector<std::vector<float>> m = data;
+
+        for (size_t r = 0; r < data.size(); r++) {
+            for (size_t c = 0; c < data[r].size(); c++) {
+                m[c][r] = data[r][c];
+            }
+        }
+
+        return Matrix(m);
+    }
+
     void print() {
         std::string out;
         for (const auto& row : data) {
@@ -175,9 +186,7 @@ public:
         }
     }
 
-    // Matrix transpose() {
-    //     std::cout << "Matrix transposed" << std::endl;
-    // }
+    
 
     // ~Matrix() {
     //     std::cout << "Matrix destroyed" << std::endl;
@@ -202,10 +211,12 @@ int main(int argc, char const *argv[]) {
     // inversed.print();
     matrix.print();
     std::cout << std::endl;
+    Matrix transposed = matrix.transpose();
+    transposed.print();
 
-    matrix.info();
+    // matrix.info();
 
-    matrix.inverse().print();
+    // matrix.inverse().print();
 
     // inversed.round();
     // inversed.print();
