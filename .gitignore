@@ -1,2 +1,4 @@
+.vscode
+
 *.sh
-.vscode/settings.json
+*.exe
