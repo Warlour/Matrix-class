@@ -40,8 +40,9 @@ private:
                 sum += pow(-1, idx+1) * m[idx][0] * _get_determinant(submatrix);
             }
             return sum;
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     void _get_data(std::vector<std::vector<float>> v) {
@@ -61,7 +62,7 @@ private:
 public:
     std::vector<std::vector<float>> data = {};
     // std::optional<float> determinant = std::nullopt;
-    bool determinant = false;
+    float determinant;
 
     // Constructor
     Matrix(std::vector<std::vector<float>> v) {
@@ -73,7 +74,7 @@ public:
         _get_data(v);
 
         if (_isSquare)
-            float determinant = _get_determinant(data);
+            determinant = _get_determinant(data);
             if (determinant == 0) _isSingular = true;
     }
 
@@ -188,9 +189,12 @@ int main(int argc, char const *argv[]) {
     //                                      {3, -2,  5, -17}, 
     //                                      {2,  4, -3,  29}};
     
-    std::vector<std::vector<float>> m = {{1, 2, 3},
-                                         {4, 5, 6},
-                                         {7, 8, 4}};
+    // std::vector<std::vector<float>> m = {{1, 2, 3},
+    //                                      {4, 5, 6},
+    //                                      {7, 8, 4}};
+
+    std::vector<std::vector<float>> m = {{-3, 7}, 
+                                         {-5, 9}};
     Matrix matrix(m);
     // std::cout << matrix.data << std::endl;
     // matrix.info();
@@ -198,6 +202,8 @@ int main(int argc, char const *argv[]) {
     // inversed.print();
     matrix.print();
     std::cout << std::endl;
+
+    matrix.info();
 
     matrix.inverse().print();
 
